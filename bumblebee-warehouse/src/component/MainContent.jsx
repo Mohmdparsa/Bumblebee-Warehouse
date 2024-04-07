@@ -2,10 +2,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Grid } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch} from "react-redux";
+import { deleteStoreData } from "../feature/ProductSlice";
 
 const MainContent = () => {
+  const dispatch = useDispatch()
   const ProductData = useSelector((state) => state.product.data);
+  const handleDelete = (index)=>{
+    dispatch(deleteStoreData(index))
+  }
   return (
     <div>
       {ProductData.map((data, index) => (
@@ -63,6 +68,7 @@ const MainContent = () => {
                 style={{ marginLeft: "auto" }}
                 variant="contained"
                 sx={{ backgroundColor: "primary.dark" }}
+                onClick={()=> handleDelete(index)}
               >
                 Delete
               </Button>
