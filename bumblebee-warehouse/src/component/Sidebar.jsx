@@ -8,6 +8,7 @@ import {
   Select,
   MenuItem,
   FormControl,
+  Typography,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -20,12 +21,25 @@ const Sidebar = () => {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [day, setDay] = useState("");
-  const [month , setMonth] = useState("");
-  const [year , setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+  const [count, setCount] = useState("");
   const [rating, setRating] = useState(0);
 
   const handleSubmit = () => {
-    dispatch(addStoreData({ name, model, price, description, rating , day , month , year }));
+    dispatch(
+      addStoreData({
+        name,
+        model,
+        price,
+        description,
+        rating,
+        day,
+        month,
+        count,
+        year,
+      })
+    );
     setName("");
     setModel("");
     setPrice("");
@@ -34,28 +48,36 @@ const Sidebar = () => {
     setMonth("");
     setYear("");
     setRating("");
+    setCount("");
   };
 
   return (
     <>
       <Grid
         sx={{
-          backgroundColor: "red",
+          backgroundColor: "primary.dark",
           height: "100vh",
           alignItems: "center",
           textAlign: "center",
           display: "flex",
           flexDirection: "column",
+          overflowY: "auto",
         }}
-        xs={4}
+        xs={5}
+        md={4}
+        lg={3}
       >
-        <h1>BumbleBee WareHouse</h1>
+        <h1
+          style={{ marginLeft: "20px", marginRight: "20px", color: "#555273" }}
+        >
+          Bumblebee Warehouse
+        </h1>
         <Divider variant="middle" sx={{ width: "90%" }} />
         <TextField
           id="outlined-basic"
           label="name"
           variant="outlined"
-          sx={{ marginTop: "40px", width: "80%" }}
+          sx={{ marginTop: "40px", width: "80%", color: "primary.main" }}
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -69,7 +91,7 @@ const Sidebar = () => {
         />
         <TextField
           id="outlined-basic"
-          label="price"
+          label="price$"
           variant="outlined"
           sx={{ marginTop: "10px", width: "80%" }}
           value={price}
@@ -84,7 +106,10 @@ const Sidebar = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <Grid item style={{ display: "flex", marginTop: "10px" }}>
+        <Grid sx={{ marginTop: "10px" }} xs={12} sm={8} md={12}>
+          <Typography sx={{ marginLeft: 0, color: "#555273" }}>
+            Enterance Date
+          </Typography>
           <FormControl sx={{ m: 1, minWidth: 110 }} size="small">
             <InputLabel id="demo-simple-select-label">day</InputLabel>
             <Select
@@ -189,14 +214,15 @@ const Sidebar = () => {
             </Select>
           </FormControl>
         </Grid>
-        {/* <FormControl sx={{ m: 1, minWidth: 110 }} size="small">
+        <Typography style={{ color: "#555273" }}>Number of products</Typography>
+        <FormControl sx={{ m: 1, minWidth: 110 }} size="small">
           <InputLabel id="demo-simple-select-label">count</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="count"
-            value={select}
-            onChange={(e) => setSelect(e.target.value)}
+            value={count}
+            onChange={(e) => setCount(e.target.value)}
           >
             <MenuItem value={1}>1</MenuItem>
             <MenuItem value={2}>2</MenuItem>
@@ -219,18 +245,23 @@ const Sidebar = () => {
             <MenuItem value={19}>19</MenuItem>
             <MenuItem value={20}>20</MenuItem>
           </Select>
-        </FormControl> */}
+        </FormControl>
         <Rating
           name="half-rating"
           defaultValue={2.5}
           precision={0.5}
-          sx={{ marginTop: "10px" }}
           value={rating}
           onChange={(e) => setRating(e.target.value)}
         />
         <Button
           variant="contained"
-          sx={{ marginTop: "30px", width: "80%" }}
+          sx={{
+            marginTop: "30px",
+            width: "80%",
+            marginBottom: "30px",
+            backgroundColor: "secondary.main",
+            color: "white",
+          }}
           onClick={handleSubmit}
         >
           Submit
