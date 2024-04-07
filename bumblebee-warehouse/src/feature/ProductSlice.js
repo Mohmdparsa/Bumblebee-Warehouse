@@ -9,11 +9,11 @@ const ProductSlice = createSlice({
     addStoreData: (state, action) => {
       state.data.push(action.payload);
     },
-    clearFormData: (state) => {
-      state = [];
-    },
+    deleteStoreData : (state , action)=>{
+      state.data = state.data.filter((item , index)=>index !== action.payload)
+    }
   },
 });
 
 export default ProductSlice.reducer;
-export const { addStoreData, clearFormData } = ProductSlice.actions;
+export const { addStoreData, deleteStoreData } = ProductSlice.actions;
