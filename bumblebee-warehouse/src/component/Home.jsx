@@ -7,8 +7,8 @@ const Home = () => {
     <>
       <Grid container>
         <Sidebar />
-        <Grid sx={{ backgroundColor: "blue", height: "100vh" }} xs={8} >
-        <MainContent />
+        <Grid sx={{ backgroundColor: "secondary.main", height: "100vh" ,  overflowY: "auto",}} xs={7} md={8} lg={9}>
+        <MainContent/>
         </Grid>
       </Grid>
     </>
