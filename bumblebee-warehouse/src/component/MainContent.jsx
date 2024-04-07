@@ -1,7 +1,7 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions} from "@mui/material";
+import { Button, CardActionArea, CardActions, Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 
 const MainContent = () => {
@@ -9,40 +9,66 @@ const MainContent = () => {
   return (
     <div>
       {ProductData.map((data, index) => (
-        <Card sx={{ maxWidth: 345, height: 300, margin: 6 }} key={index}>
-          <CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {data.name}
-              </Typography>
-              <Typography gutterBottom variant="h6" component="div">
-                {data.model}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {data.description}
-              </Typography>
-              <Typography gutterBottom variant="h6" component="div">
-                {data.price}
-              </Typography>
-              <Typography gutterBottom variant="h6" component="div">
-                {data.day} / {data.month}/ {data.year}
-              </Typography>
-              <Typography>{data.Rating}</Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Delete
-            </Button>
-            <Button
-              size="small"
-              color="primary"
-              style={{ marginLeft: "200px" }}
-            >
-              Edit
-            </Button>
-          </CardActions>
-        </Card>
+        <Grid item key={index} sm={11} md={12}>
+          <Card
+            sx={{
+              height: "45vh",
+              marginTop: "35px",
+              marginLeft: "44px",
+              marginRight: "15px",
+              marginBottom: "30px",
+              backgroundColor: "primary.main",
+            }}
+          >
+            <CardActionArea>
+              <CardContent>
+                <Typography gutterBottom variant="h4" component="div">
+                  <span style={{ color: "red" }}>Name:</span>
+                  {data.name}
+                </Typography>
+                <Typography gutterBottom component="div">
+                  <span style={{ color: "red" }}>Model:</span> {data.model}
+                </Typography>
+                <Typography gutterBottom component="div">
+                  <span style={{ color: "red" }}>price:</span> {data.price}$
+                </Typography>
+                <Typography gutterBottom color="text.secondary">
+                  <span style={{ color: "red" }}>Description:</span>{" "}
+                  {data.description}
+                </Typography>
+                <Typography gutterBottom component="div">
+                  <span style={{ color: "red" }}>Entrance date:</span>
+                  {data.day} / {data.month}/ {data.year}
+                </Typography>
+                <Typography>
+                  <span style={{ color: "red" }}>number of product : </span>
+                  {data.count}
+                </Typography>
+                <Typography>{data.Rating}</Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Button
+                size="small"
+                color="primary"
+                style={{ marginRight: "auto" }}
+                variant="contained"
+                sx={{ backgroundColor: "primary.dark" }}
+              >
+                Edit
+              </Button>
+              <Button
+                size="small"
+                color="primary"
+                style={{ marginLeft: "auto" }}
+                variant="contained"
+                sx={{ backgroundColor: "primary.dark" }}
+              >
+                Delete
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
       ))}
     </div>
   );
