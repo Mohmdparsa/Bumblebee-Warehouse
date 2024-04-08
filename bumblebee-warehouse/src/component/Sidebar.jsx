@@ -48,6 +48,16 @@ const Sidebar = () => {
     setCount("");
   };
 
+  const CanSave =
+    Boolean(name) &
+    Boolean(model) &
+    Boolean(price) &
+    Boolean(description) &
+    Boolean(day) &
+    Boolean(month) &
+    Boolean(year) &
+    Boolean(count);
+
   return (
     <>
       <Grid
@@ -253,6 +263,7 @@ const Sidebar = () => {
             color: "white",
           }}
           onClick={handleSubmit}
+          disabled={!CanSave}
         >
           Submit
         </Button>
