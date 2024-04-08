@@ -24,7 +24,6 @@ const Sidebar = () => {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [count, setCount] = useState("");
-  const [rating, setRating] = useState(0);
 
   const handleSubmit = () => {
     dispatch(
@@ -33,7 +32,6 @@ const Sidebar = () => {
         model,
         price,
         description,
-        rating,
         day,
         month,
         count,
@@ -47,7 +45,6 @@ const Sidebar = () => {
     setDay("");
     setMonth("");
     setYear("");
-    setRating("");
     setCount("");
   };
 
@@ -246,13 +243,6 @@ const Sidebar = () => {
             <MenuItem value={20}>20</MenuItem>
           </Select>
         </FormControl>
-        <Rating
-          name="half-rating"
-          defaultValue={2.5}
-          precision={0.5}
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
-        />
         <Button
           variant="contained"
           sx={{
