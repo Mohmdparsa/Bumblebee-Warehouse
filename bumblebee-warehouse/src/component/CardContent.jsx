@@ -6,7 +6,6 @@ import {
   CardActionArea,
   CardActions,
   Grid,
-  Rating,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { deleteStoreData } from "../feature/ProductSlice";
