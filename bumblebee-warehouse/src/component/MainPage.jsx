@@ -1,23 +1,42 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions, Grid } from "@mui/material";
+import { Button, CardActionArea, CardActions, Grid , Rating } from "@mui/material";
 import { useSelector , useDispatch} from "react-redux";
-import { deleteStoreData } from "../feature/ProductSlice";
+import { deleteStoreData , selectedItem, setEditIndex} from "../feature/ProductSlice";
+import { useState } from "react";
+import SearchAppBar from "./Navbar";
 
-const MainContent = () => {
+const MainPage = () => {
   const dispatch = useDispatch()
-  const ProductData = useSelector((state) => state.product.data);
+  const ProductData = useSelector(selectedItem);
+  const [searchQuery, setSearchQuery] = useState('');
   const handleDelete = (index)=>{
     dispatch(deleteStoreData(index))
   }
+  const handleEdit = (index) => {
+    dispatch(setEditIndex(index));
+  }
+  const filteredProducts = ProductData.filter((product) =>
+  product.name.toLowerCase().includes(searchQuery.toLowerCase())
+);
   return (
     <div>
-      {ProductData.map((data, index) => (
+      <SearchAppBar/>
+    {/* <Grid container xs={12} sx={{backgroundColor:"primary.main" , height:"10vh"}}>
+      <TextField
+        type="text"
+        placeholder="Search products by name..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        sx={{height:"20px"}}
+      />
+    </Grid> */}
+      {filteredProducts.map((data, index) => (
         <Grid item key={index} sm={11} md={12}>
           <Card
             sx={{
-              height: "45vh",
+              height: "50vh",
               marginTop: "35px",
               marginLeft: "44px",
               marginRight: "15px",
@@ -49,7 +68,7 @@ const MainContent = () => {
                   <span style={{ color: "red" }}>number of product : </span>
                   {data.count}
                 </Typography>
-                <Typography>{data.Rating}</Typography>
+                <Rating readOnly value={data.Rating} sx={{marginTop:'10px'}}/>
               </CardContent>
             </CardActionArea>
             <CardActions>
@@ -59,6 +78,7 @@ const MainContent = () => {
                 style={{ marginRight: "auto" }}
                 variant="contained"
                 sx={{ backgroundColor: "primary.dark" }}
+                onClick={() => handleEdit(index)}
               >
                 Edit
               </Button>
@@ -80,4 +100,4 @@ const MainContent = () => {
   );
 };
 
-export default MainContent;
+export default MainPage;
