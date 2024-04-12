@@ -2,7 +2,6 @@ import {
   Grid,
   TextField,
   Divider,
-  Rating,
   Button,
   InputLabel,
   Select,
@@ -75,11 +74,12 @@ const Sidebar = () => {
         lg={3}
       >
         <h1
-          style={{ marginLeft: "20px", marginRight: "20px", color: "#555273" }}
+          style={{ marginLeft: "20px", marginRight: "20px", color: "white" }}
         >
           Bumblebee Warehouse
         </h1>
         <Divider variant="middle" sx={{ width: "90%" }} />
+        <Grid sx={{backgroundColor:"#FBFADA" , height:"100vh"}}>
         <TextField
           id="outlined-basic"
           label="name"
@@ -103,6 +103,9 @@ const Sidebar = () => {
           sx={{ marginTop: "10px", width: "80%" }}
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+          type="number"
+          inputProps={{ min: 0 }}
+       
         />
         <TextField
           id="outlined-multiline-flexible"
@@ -114,7 +117,7 @@ const Sidebar = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
         <Grid sx={{ marginTop: "10px" }} xs={12} sm={8} md={12}>
-          <Typography sx={{ marginLeft: 0, color: "#555273" }}>
+          <Typography sx={{ marginLeft: 0, color: "primary.dark" }}>
             Enterance Date
           </Typography>
           <FormControl sx={{ m: 1, minWidth: 110 }} size="small">
@@ -221,7 +224,7 @@ const Sidebar = () => {
             </Select>
           </FormControl>
         </Grid>
-        <Typography style={{ color: "#555273" }}>Number of products</Typography>
+        <Typography sx={{ color: "primary.dark" }}>Number of products</Typography>
         <FormControl sx={{ m: 1, minWidth: 110 }} size="small">
           <InputLabel id="demo-simple-select-label">count</InputLabel>
           <Select
@@ -259,7 +262,7 @@ const Sidebar = () => {
             marginTop: "30px",
             width: "80%",
             marginBottom: "30px",
-            backgroundColor: "secondary.main",
+            backgroundColor: "primary.dark",
             color: "white",
           }}
           onClick={handleSubmit}
@@ -267,6 +270,7 @@ const Sidebar = () => {
         >
           Submit
         </Button>
+        </Grid>
       </Grid>
     </>
   );
