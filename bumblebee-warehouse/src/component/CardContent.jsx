@@ -1,11 +1,12 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+
 import {
   Button,
   CardActionArea,
   CardActions,
   Grid,
+  Card,
+  CardContent,
+  Typography
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { deleteStoreData } from "../feature/ProductSlice";
@@ -18,16 +19,18 @@ const CardsContent = ({ filteredProducts }) => {
   };
   return (
     <>
+    <Grid container sx={{display:"flex" , overflowY:"auto"}}>
       {filteredProducts?.map((data, index) => (
-        <Grid item key={index} sm={11} md={12}>
+        <Grid item key={index} sm={8} md={6} >
           <Card
             sx={{
-              height: "50vh",
+              height: "300px",
               marginTop: "35px",
-              marginLeft: "44px",
+              marginLeft: "30px",
               marginRight: "15px",
-              marginBottom: "30px",
-              backgroundColor: "primary.main",
+              marginBottom: "20px",
+              backgroundColor: "secondary.main",
+              minWidth:"240px"
             }}
           >
             <CardActionArea>
@@ -60,9 +63,9 @@ const CardsContent = ({ filteredProducts }) => {
               <Button
                 size="small"
                 color="primary"
-                style={{ marginLeft: "auto" }}
+                style={{ marginLeft: "auto" , color:"white" }}
                 variant="contained"
-                sx={{ backgroundColor: "primary.dark" }}
+                sx={{ backgroundColor: "primary.main" }}
                 onClick={() => handleDelete(index)}
               >
                 Delete
@@ -71,6 +74,7 @@ const CardsContent = ({ filteredProducts }) => {
           </Card>
         </Grid>
       ))}
+      </Grid>
     </>
   );
 };
