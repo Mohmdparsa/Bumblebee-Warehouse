@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
-import Sidebar from "./Sidebar";
-import MainPage from "./MainPage";
+import Sidebar from "../component/Sidebar";
+import MainPage from "../component/MainPage";
 
 const Home = () => {
   return (
