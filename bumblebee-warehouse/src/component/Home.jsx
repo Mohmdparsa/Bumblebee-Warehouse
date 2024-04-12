@@ -9,7 +9,7 @@ const Home = () => {
         <Sidebar />
         <Grid
           sx={{
-            backgroundColor: "secondary.main",
+            backgroundColor: "secondary.dark",
             height: "100vh",
             overflowY: "auto",
           }}
